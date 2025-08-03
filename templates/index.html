@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🧠 Customer Clusters | Hierarchical Clustering</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+        p {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        .filter {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filter select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #aaa;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        function filterCluster() {
+            const selectedCluster = document.getElementById("clusterSelect").value;
+            const rows = document.querySelectorAll("tbody tr");
+
+            rows.forEach(row => {
+                const clusterCell = row.querySelector("td:last-child");
+                if (selectedCluster === "all" || clusterCell.innerText === selectedCluster) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Customer Segmentation Dashboard</h1>
+        <p>Explore clustered customer data using Hierarchical Clustering.</p>
+
+        <div class="filter">
+            <label for="clusterSelect"><strong>Filter by Cluster:</strong></label>
+            <select id="clusterSelect" onchange="filterCluster()">
+                <option value="all">All Clusters</option>
+                <option value="0">Cluster 0</option>
+                <option value="1">Cluster 1</option>
+                <option value="2">Cluster 2</option>
+                <option value="3">Cluster 3</option>
+                <option value="4">Cluster 4</option>
+            </select>
+        </div>
+
+        <div class="table-container">
+            {{ table|safe }}
+        </div>
+
+        <div class="footer">
+            <p>Made with ❤️ using Agglomerative Clustering & Flask</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!-- /kmeans_app/
+├── app.py
+├── train_model.py
+├── mall_customers.csv
+├── gender_encoder.pkl
+├── gender_encoder.pkl
+└── templates/
+    └── index.html -->
